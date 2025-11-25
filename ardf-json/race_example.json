@@ -1,0 +1,186 @@
+{
+  "race_name": "OP Prahy 4 144 MHz",
+  "race_start": "2025-09-23T16:30:00",
+  "race_type": "CLASSIC",
+  "race_band": "M2",
+  "race_level": "DISTRICT",
+  "race_time_limit": 100,
+  "categories": [
+    {
+      "category_name": "M19",
+      "category_max_age": 19,
+      "category_time_limit": 120,
+      "category_band": "M80",
+      "category_gender": true,
+      "category_length": 8.5,
+      "category_climb": 220,
+      "category_control_points": [
+        {
+          "si_code": 45,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 44,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 43,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 41,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 99,
+          "control_type": "BEACON"
+        }
+      ]
+    },
+    {
+      "category_name": "M20",
+      "category_max_age": 39,
+      "category_time_limit": 120,
+      "category_band": "M80",
+      "category_gender": true,
+      "category_length": 12.9,
+      "category_climb": 300,
+      "category_control_points": [
+        {
+          "si_code": 41,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 42,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 43,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 44,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 45,
+          "control_type": "CONTROL"
+        },
+        {
+          "si_code": 99,
+          "control_type": "BEACON"
+        }
+      ]
+    }
+  ],
+  "competitors": [
+    {
+      "competitor_category": "M20",
+      "competitor_club": "SK RADIOSPORT z.s.",
+      "start_number": 101,
+      "competitor_gender": true,
+      "last_name": "Novák",
+      "first_name": "Petr",
+      "birth_year": 1970,
+      "si_number": 45678,
+      "country": "CZE",
+      "competitor_index": "GBM8502",
+      "competitor_start_time": "00:00",
+      "result": {
+        "place": 1,
+        "run_time": "35:42",
+        "result_status": "OK",
+        "punch_count": 5,
+        "punches": [
+          {
+            "code": "31",
+            "split_time": "05:12",
+            "alias": "1",
+            "control_type": "CONTROL",
+            "punch_status": "OK"
+          },
+          {
+            "code": "32",
+            "split_time": "05:22",
+            "alias": "2",
+            "control_type": "CONTROL",
+            "punch_status": "OK"
+          },
+          {
+            "code": "43",
+            "split_time": "10:40",
+            "alias": "R3",
+            "control_type": "CONTROL",
+            "punch_status": "OK"
+          },
+          {
+            "code": "99",
+            "split_time": "05:43",
+            "alias": "M",
+            "control_type": "BEACON",
+            "punch_status": "OK"
+          },
+          {
+            "code": "0",
+            "split_time": "08:45",
+            "alias": "F",
+            "control_type": "FINISH",
+            "punch_status": "OK"
+          }
+        ]
+      }
+    },
+    {
+      "competitor_category": "M20",
+      "competitor_gender": true,
+      "last_name": "Dvořák",
+      "first_name": "Jan",
+      "si_number": 98765,
+      "birth_year": 1990,
+      "competitor_start_time": "05:00",
+      "result": {
+        "place": 0,
+        "run_time": "135:42",
+        "result_status": "OVT",
+        "punch_count": 4,
+        "punches": [
+          {
+            "code": "31",
+            "split_time": "05:12",
+            "alias": "1",
+            "control_type": "CONTROL",
+            "punch_status": "OK"
+          },
+          {
+            "code": "32",
+            "split_time": "05:22",
+            "alias": "2",
+            "control_type": "CONTROL",
+            "punch_status": "AP"
+          },
+          {
+            "code": "55",
+            "split_time": "10:40",
+            "alias": "S",
+            "control_type": "SEPARATOR",
+            "punch_status": "OK"
+          },
+          {
+            "code": "99",
+            "split_time": "105:43",
+            "alias": "M",
+            "control_type": "BEACON",
+            "punch_status": "OK"
+          },
+          {
+            "code": "0",
+            "split_time": "08:45",
+            "alias": "F",
+            "control_type": "FINISH",
+            "punch_status": "OK"
+          }
+        ]
+      }
+    }
+  ]
+}
