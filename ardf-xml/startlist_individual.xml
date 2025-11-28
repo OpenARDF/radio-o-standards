@@ -9,19 +9,19 @@
     http://rob-is.cz/datastandard/ardf/1.0 https://raw.githubusercontent.com/kolskypavel/radio-o-standards/main/ardf-xml/ardf_schema.xsd
     http://www.orienteering.org/datastandard/3.0 https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd">
     <Event>
-        <StartTime>
-            <Date>2024-09-26</Date>
-            <Time>09:00:00</Time>
-        </StartTime>
+        <iof:Name>MČR na klasických tratích</iof:Name>
+        <iof:StartTime>
+            <iof:Date>2024-09-26</iof:Date>
+            <iof:Time>09:00:00</iof:Time>
+        </iof:StartTime>
         <!--ID soutěže v ROBISu -->
         <ID type="ROBIS">1</ID> 
-        <Name>MČR na klasických tratích</Name>
     </Event>
     <!-- Přihlášky v definované kategorii -->
     <ClassStart>
         <!-- Hodnoty: M,F -->
         <Class maxAge="" sex="M">
-            <Name>M20</Name>
+            <iof:Name>M20</iof:Name>
         </Class>
         <PersonStart>
             <Person sex="M">
@@ -46,6 +46,7 @@
                     <Family>Novák</Family>
                 </Name>
                 <ID type="INDEX">GBM9514</ID>
+                <BibNumber>101</BibNumber>
             </Person>
             <Organisation>
                 <Name>SK Radiosport</Name>
@@ -69,6 +70,7 @@
                     <Given>Šimon</Given>
                     <Family>Navrátil</Family>
                 </Name>
+                <BibNumber>102</BibNumber>
                 <ID type="INDEX">GBM5411</ID>
             </Person>
             <Organisation>
