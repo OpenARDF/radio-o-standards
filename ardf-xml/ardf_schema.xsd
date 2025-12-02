@@ -2,79 +2,144 @@
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:iof="http://www.orienteering.org/datastandard/3.0"
+  xmlns:ardf="http://rob-is.cz/datastandard/ardf/1.0"
   targetNamespace="http://rob-is.cz/datastandard/ardf/1.0"
-  xmlns="http://rob-is.cz/datastandard/ardf/1.0"
   elementFormDefault="qualified"
   attributeFormDefault="unqualified">
 
-  <!-- IOF 3.0 schema (oficiální) -->
+  <!-- IOF 3.0 official schema -->
   <xs:import
       namespace="http://www.orienteering.org/datastandard/3.0"
       schemaLocation="https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd"/>
 
   <!-- ==========================
-       ARDF: Course data pro ResultList/Extensions
+       ARDF: Course data for ResultList/Extensions
+       (RaceCourseData / Course / CourseControl / ControlCode / Alias)
   =========================== -->
+
+  <xs:simpleType name="CourseControlTypeKind">
+    <xs:annotation>
+      <xs:documentation>
+        Type of course control:
+          - Control   : normal control
+          - Separator : spectator control
+          - Beacon    : beacon / final transmitter
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Control"/>
+      <xs:enumeration value="Separator"/>
+      <xs:enumeration value="Beacon"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:complexType name="CourseControlType">
     <xs:annotation>
       <xs:documentation>
-        Jedna kontrola v trati. Atribut "type" rozlišuje:
-        - Control   : normální kontrola
-        - Separator : divácká kontrola
-        - Beacon    : maják
+        Single control on the course.
+
+        ardf:ControlCode:
+          - control code used in timing / punches
+            (must match IOF Result/SplitTime/ControlCode).
+
+        ardf:Alias (optional):
+          - human-readable or ARDF-specific alias
+            (e.g. "1", "M", "S", "R1").
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="Control" type="xs:string"/>
+      <xs:element name="ControlCode" type="xs:string"/>
+      <xs:element name="Alias" type="xs:string" minOccurs="0"/>
     </xs:sequence>
-    <xs:attribute name="type" use="optional">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="Control"/>
-          <xs:enumeration value="Separator"/>
-          <xs:enumeration value="Beacon"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
+    <xs:attribute name="type" type="ardf:CourseControlTypeKind" use="optional"/>
   </xs:complexType>
 
   <xs:complexType name="CourseType">
+    <xs:annotation>
+      <xs:documentation>
+        One ARDF course definition for a class/category
+        (e.g. CourseFamily = "M20", "D20").
+      </xs:documentation>
+    </xs:annotation>
     <xs:sequence>
-      <!-- M20, D20, W21, … -->
       <xs:element name="CourseFamily" type="xs:string"/>
-      <xs:element name="CourseControl" type="CourseControlType" maxOccurs="unbounded"/>
+      <xs:element name="CourseControl" type="ardf:CourseControlType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="RaceCourseDataType">
     <xs:annotation>
       <xs:documentation>
-        ARDF popis tratí pro jednotlivé kategorie, vkládaný typicky do
-        ResultList/Extensions.
+        ARDF course descriptions per category, typically embedded in
+        IOF ResultList/Extensions as ardf:RaceCourseData.
 
-        Každá Course reprezentuje jednu kategorii (CourseFamily)
-        a seznam CourseControl s typem Control / Separator / Beacon.
+        Each ardf:Course represents a single category (CourseFamily)
+        and a list of ardf:CourseControl elements.
+
+        Mapping to IOF results:
+          IOF Result/SplitTime/ControlCode == ardf:ControlCode.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="Course" type="CourseType" maxOccurs="unbounded"/>
+      <xs:element name="Course" type="ardf:CourseType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
-  <!-- Globální element použitý v ResultList/Extensions -->
-  <xs:element name="RaceCourseData" type="RaceCourseDataType"/>
+  <!-- Global element used inside ResultList/Extensions -->
+  <xs:element name="RaceCourseData" type="ardf:RaceCourseDataType"/>
 
   <!-- ==========================
-       ARDF: ValidPunches pro Result/Extensions
+       ARDF: ValidPunches for Result/Extensions
   =========================== -->
+
   <xs:element name="ValidPunches" type="xs:integer">
     <xs:annotation>
       <xs:documentation>
-        Počet správně nalezených kontrol v daném ARDF výsledku, včetně
-        diváckých kontrol (Separator) a majáku (Beacon).
+        Number of correctly found controls for a given ARDF result,
+        including spectator controls (Separator) and beacon (Beacon).
 
-        Doporučené místo:
-          - uvnitř iof:Result/iof:Extensions
+        Recommended location:
+          - inside iof:Result/iof:Extensions as ardf:ValidPunches.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <!-- ==========================
+       ARDF: MaxAge & Sex for Class/Extensions
+  =========================== -->
+
+  <xs:simpleType name="SexType">
+    <xs:annotation>
+      <xs:documentation>
+        Sex / category type:
+          - M : male
+          - F : female
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="M"/>
+      <xs:enumeration value="F"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="MaxAge" type="xs:integer">
+    <xs:annotation>
+      <xs:documentation>
+        Maximum age for the class (e.g. 39 for M20, 99 for D60).
+
+        Recommended location:
+          - inside iof:Class/iof:Extensions as ardf:MaxAge.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Sex" type="ardf:SexType">
+    <xs:annotation>
+      <xs:documentation>
+        Sex of the class (M/F).
+
+        Recommended location:
+          - inside iof:Class/iof:Extensions as ardf:Sex.
       </xs:documentation>
     </xs:annotation>
   </xs:element>
