@@ -23,11 +23,7 @@
           "category_climb": 220,
           "category_control_points": [
             {
-              "si_code": 45,
-              "control_type": "CONTROL"
-            },
-            {
-              "si_code": 44,
+              "si_code": 41,
               "control_type": "CONTROL"
             },
             {
@@ -35,7 +31,11 @@
               "control_type": "CONTROL"
             },
             {
-              "si_code": 41,
+              "si_code": 44,
+              "control_type": "CONTROL"
+            },
+            {
+              "si_code": 45,
               "control_type": "CONTROL"
             },
             {
