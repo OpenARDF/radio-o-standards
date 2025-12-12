@@ -141,7 +141,6 @@
                     <Time>528</Time>
                 </SplitTime>
 
-
                 <!-- Maják -->
                 <SplitTime>
                     <ControlCode>99</ControlCode>
@@ -200,7 +199,7 @@
             <!-- D20 -->
             <ardf:Course>
                 <ardf:CourseFamily>D20</ardf:CourseFamily>
-
+                
                 <ardf:CourseControl type="Control">
                     <ardf:ControlCode>22</ardf:ControlCode>
                     <ardf:Alias>2</ardf:Alias>
