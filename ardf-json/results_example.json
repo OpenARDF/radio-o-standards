@@ -20,7 +20,9 @@
     { "alias_si_code": 32, "alias_name": "2" },
     { "alias_si_code": 55, "alias_name": "S" },
     { "alias_si_code": 43, "alias_name": "R3" },
-    { "alias_si_code": 99, "alias_name": "M" }
+    { "alias_si_code": 99, "alias_name": "M" },
+    { "alias_si_code": 0, "alias_name": "F" }
+
   ],
 
   "competitors": [
@@ -43,37 +45,32 @@
         "punch_count": 5,
         "punches": [
           {
-            "code": "31",
+            "code": 31,
             "split_time": "05:12",
-            "alias": "1",
             "control_type": "CONTROL",
             "punch_status": "OK"
           },
           {
-            "code": "32",
+            "code": 32,
             "split_time": "05:22",
-            "alias": "2",
             "control_type": "CONTROL",
             "punch_status": "OK"
           },
           {
-            "code": "43",
+            "code": 43,
             "split_time": "10:40",
-            "alias": "R3",
             "control_type": "CONTROL",
             "punch_status": "OK"
           },
           {
-            "code": "99",
+            "code": 99,
             "split_time": "05:43",
-            "alias": "M",
             "control_type": "BEACON",
             "punch_status": "OK"
           },
           {
-            "code": "0",
+            "code": 0,
             "split_time": "08:45",
-            "alias": "F",
             "control_type": "FINISH",
             "punch_status": "OK"
           }
@@ -95,37 +92,32 @@
         "punch_count": 4,
         "punches": [
           {
-            "code": "31",
+            "code": 31,
             "split_time": "05:12",
-            "alias": "1",
             "control_type": "CONTROL",
             "punch_status": "OK"
           },
           {
-            "code": "32",
+            "code": 32,
             "split_time": "05:22",
-            "alias": "2",
             "control_type": "CONTROL",
             "punch_status": "AP"
           },
           {
-            "code": "55",
+            "code": 55,
             "split_time": "10:40",
-            "alias": "S",
             "control_type": "SEPARATOR",
             "punch_status": "OK"
           },
           {
-            "code": "99",
+            "code": 99,
             "split_time": "105:43",
-            "alias": "M",
             "control_type": "BEACON",
             "punch_status": "OK"
           },
           {
-            "code": "0",
+            "code": 0,
             "split_time": "08:45",
-            "alias": "F",
             "control_type": "FINISH",
             "punch_status": "OK"
           }

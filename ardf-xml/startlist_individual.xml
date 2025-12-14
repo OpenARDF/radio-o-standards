@@ -4,7 +4,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:ardf="http://rob-is.cz/datastandard/ardf/1.0"
   iofVersion="3.0"
-  createTime="2024-12-08T16:52:12+01:00"
+  createTime="2024-12-08T16:52:12Z"
   creator="CREATOR NAME"
   xsi:schemaLocation="http://www.orienteering.org/datastandard/3.0 https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd
                       http://rob-is.cz/datastandard/ardf/1.0 https://raw.githubusercontent.com/kolskypavel/radio-o-standards/main/ardf-xml/ardf_schema.xsd">
@@ -14,7 +14,7 @@
     <Name>MČR na klasických tratích</Name>
     <StartTime>
       <Date>2024-09-26</Date>
-      <Time>09:00:00+02:00</Time>
+      <Time>09:00:00</Time>
     </StartTime>
   </Event>
 
@@ -44,7 +44,7 @@
 
       <Start>
         <BibNumber>101</BibNumber>
-        <StartTime>2024-09-26T09:00:00+02:00</StartTime>
+        <StartTime>2024-09-26T09:00:00Z</StartTime>
         <ControlCard>25645</ControlCard>
       </Start>
     </PersonStart>
@@ -66,7 +66,7 @@
 
       <Start>
         <BibNumber>102</BibNumber>
-        <StartTime>2024-09-26T09:05:00+02:00</StartTime>
+        <StartTime>2024-09-26T09:05:00Z</StartTime>
         <ControlCard>8048538</ControlCard>
       </Start>
     </PersonStart>
@@ -98,7 +98,7 @@
 
       <Start>
         <!-- Startovní číslo nemá - můžeme vynechat -->
-        <StartTime>2024-09-26T09:30:00+02:00</StartTime>
+        <StartTime>2024-09-26T09:30:00Z</StartTime>
         <ControlCard>55677</ControlCard>
       </Start>
     </PersonStart>

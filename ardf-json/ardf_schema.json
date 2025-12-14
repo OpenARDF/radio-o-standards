@@ -212,7 +212,7 @@
                 "alias_name": {
                   "type": "string",
                   "required": [],
-                  "description": "Name of the control point with alias- e.g. F4"
+                  "description": "Name of the control point with alias- e.g. F4, M, F, 2..."
                 }
               }
             }

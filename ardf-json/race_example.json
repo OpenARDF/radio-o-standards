@@ -80,7 +80,8 @@
     { "alias_si_code": 43, "alias_name": "S" },
     { "alias_si_code": 44, "alias_name": "4F" },
     { "alias_si_code": 45, "alias_name": "5" },
-    { "alias_si_code": 99, "alias_name": "M" }
+    { "alias_si_code": 99, "alias_name": "M" },
+    { "alias_si_code": 0, "alias_name": "F" }
   ],
 
   "competitors": [
@@ -95,6 +96,7 @@
       "si_number": 45678,
       "country": "CZE",
       "competitor_index": "GBM8502",
+      "start_preference": 0,
       "competitor_start_time": "00:00",
       "result": {
         "place": 1,
@@ -147,6 +149,7 @@
       "first_name": "Jan",
       "si_number": 98765,
       "birth_year": 1990,
+      "si_rent": true,
       "competitor_start_time": "05:00",
       "result": {
         "place": 0,

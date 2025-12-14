@@ -1,4 +1,4 @@
-# ARDF JSON Format
+# ARDF JSON Format version 1.1b
 
 The ARDF JSON format is a lightweight way to exchange ARDF (Radio Orienteering) competition data in web apps, APIs and small tools.
 

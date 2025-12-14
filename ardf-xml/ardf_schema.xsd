@@ -13,8 +13,29 @@
       schemaLocation="https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd"/>
 
   <!-- ==========================
-       ARDF: Course data for ResultList/Extensions
-       (RaceCourseData / Course / CourseControl / ControlCode / Alias)
+       ARDF: CourseControls per class
+       (list of ControlCode in Class/Extensions)
+  =========================== -->
+
+  <xs:complexType name="CourseControlsType">
+    <xs:annotation>
+      <xs:documentation>
+        List of controls (by ControlCode) for a given ARDF class/category.
+
+        Recommended location:
+          - inside iof:Class/iof:Extensions as ardf:CourseControls.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ControlCode" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="CourseControls" type="ardf:CourseControlsType"/>
+
+  <!-- ==========================
+       ARDF: RaceCourseData (alias mapping)
+       in ResultList/Extensions
   =========================== -->
 
   <xs:simpleType name="CourseControlTypeKind">
@@ -36,52 +57,35 @@
   <xs:complexType name="CourseControlType">
     <xs:annotation>
       <xs:documentation>
-        Single control on the course.
+        Mapping between timing ControlCode and ARDF alias.
 
         ardf:ControlCode:
-          - control code used in timing / punches
-            (must match IOF Result/SplitTime/ControlCode).
+          - control code used in timing / punches.
 
-        ardf:Alias (optional):
-          - human-readable or ARDF-specific alias
-            (e.g. "1", "M", "S", "R1").
+        ardf:Alias:
+          - human-readable / ARDF alias (e.g. "1", "M", "S", "R1").
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ControlCode" type="xs:string"/>
-      <xs:element name="Alias" type="xs:string" minOccurs="0"/>
+      <xs:element name="Alias" type="xs:string"/>
     </xs:sequence>
     <xs:attribute name="type" type="ardf:CourseControlTypeKind" use="optional"/>
-  </xs:complexType>
-
-  <xs:complexType name="CourseType">
-    <xs:annotation>
-      <xs:documentation>
-        One ARDF course definition for a class/category
-        (e.g. CourseFamily = "M20", "D20").
-      </xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="CourseFamily" type="xs:string"/>
-      <xs:element name="CourseControl" type="ardf:CourseControlType" maxOccurs="unbounded"/>
-    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="RaceCourseDataType">
     <xs:annotation>
       <xs:documentation>
-        ARDF course descriptions per category, typically embedded in
-        IOF ResultList/Extensions as ardf:RaceCourseData.
+        Global alias mapping for the race.
 
-        Each ardf:Course represents a single category (CourseFamily)
-        and a list of ardf:CourseControl elements.
+        Recommended location:
+          - inside iof:ResultList/iof:Extensions as ardf:RaceCourseData.
 
-        Mapping to IOF results:
-          IOF Result/SplitTime/ControlCode == ardf:ControlCode.
+        Each CourseControl gives ControlCode + Alias (+ optional type).
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="Course" type="ardf:CourseType" maxOccurs="unbounded"/>
+      <xs:element name="CourseControl" type="ardf:CourseControlType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 

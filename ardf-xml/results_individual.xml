@@ -4,7 +4,7 @@
     xmlns:ardf="http://rob-is.cz/datastandard/ardf/1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     iofVersion="3.0"
-    createTime="2024-12-08T16:52:12+01:00"
+    createTime="2024-12-08T16:52:12Z"
     creator="CREATOR NAME"
     xsi:schemaLocation="http://www.orienteering.org/datastandard/3.0 https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd
                         http://rob-is.cz/datastandard/ardf/1.0 https://raw.githubusercontent.com/kolskypavel/radio-o-standards/main/ardf-xml/ardf_schema.xsd">
@@ -21,6 +21,17 @@
     <ClassResult>
         <Class>
             <Name>M20</Name>
+            <Extensions>
+                <!-- Výčet vyhledávaných kontrol pro M20 -->
+                <ardf:CourseControls>
+                    <ardf:ControlCode>21</ardf:ControlCode>
+                    <ardf:ControlCode>22</ardf:ControlCode>
+                    <ardf:ControlCode>23</ardf:ControlCode>
+                    <ardf:ControlCode>24</ardf:ControlCode>
+                    <ardf:ControlCode>25</ardf:ControlCode>
+                    <ardf:ControlCode>99</ardf:ControlCode>
+                </ardf:CourseControls>
+            </Extensions>
         </Class>
         <PersonResult>
             <Person>
@@ -30,10 +41,11 @@
                     <Family>Novák</Family>
                     <Given>Petr</Given>
                 </Name>
+                <Nationality code="CZE" />
             </Person>
             <Organisation>
                 <Name>SK Radiosport</Name>
-                <Country code="CZE">Czech Republic</Country>
+                <ShortName>GBM</ShortName>
             </Organisation>
 
             <!-- Result = IOF struktura + ARDF ValidPunches v Extensions -->
@@ -41,9 +53,9 @@
                 <!-- Startovní číslo -->
                 <BibNumber>101</BibNumber>
 
-                <!-- Čas startu/ cíle v ISO 8601 (IOF) -->
+                <!-- Čas startu/ cíle v ISO 8601 any format -->
                 <StartTime>2024-11-02T12:23:00+01:00</StartTime>
-                <FinishTime>2024-11-02T12:59:10+01:00</FinishTime>
+                <FinishTime>2024-11-02T12:59:10Z</FinishTime>
 
                 <!-- Čas v sekundách -->
                 <Time>2170</Time>
@@ -55,7 +67,6 @@
                 <Status>OK</Status>
 
                 <!-- SplitTime – čisté IOF, status na SplitTime = Additional/Missing -->
-
                 <SplitTime>
                     <ControlCode>22</ControlCode>
                     <Time>1366</Time>
@@ -72,7 +83,7 @@
                     <ControlCode>24</ControlCode>
                     <Time>1701</Time>
                 </SplitTime>
-                <SplitTime>
+                <SplitTime status="Additional">
                     <ControlCode>2</ControlCode>
                     <Time>1832</Time>
                 </SplitTime>
@@ -96,6 +107,15 @@
     <ClassResult>
         <Class>
             <Name>D20</Name>
+            <Extensions>
+                <ardf:CourseControls>
+                    <ardf:ControlCode>22</ardf:ControlCode>
+                    <ardf:ControlCode>23</ardf:ControlCode>
+                    <ardf:ControlCode>24</ardf:ControlCode>
+                    <ardf:ControlCode>25</ardf:ControlCode>
+                    <ardf:ControlCode>99</ardf:ControlCode>
+                </ardf:CourseControls>
+            </Extensions>
         </Class>
 
         <PersonResult>
@@ -105,15 +125,16 @@
                     <Family>Nováková</Family>
                     <Given>Kateřina</Given>
                 </Name>
+                <Nationality code="CZE" />
             </Person>
             <Organisation>
                 <Name>Radioelektronika Cheb z.s.</Name>
-                <Country code="CZE">Czech Republic</Country>
+                <ShortName>DCH</ShortName>
             </Organisation>
 
             <Result>
                 <BibNumber>201</BibNumber>
-                <StartTime>2024-11-02T12:16:00+01:00</StartTime>
+                <StartTime>2024-11-02T12:16:00Z</StartTime>
                 <FinishTime>2024-11-02T12:39:56+01:00</FinishTime>
                 <Time>1436</Time>
                 <Position>1</Position>
@@ -131,7 +152,8 @@
                     <ControlCode>24</ControlCode>
                     <Time>701</Time>
                 </SplitTime>
-                <SplitTime>
+                <!-- Chybějící kontrola navíc -->
+                <SplitTime status="Missing">
                     <ControlCode>25</ControlCode>
                     <Time>868</Time>
                 </SplitTime>
@@ -156,76 +178,39 @@
         </PersonResult>
     </ClassResult>
 
-    <!-- =======================
-         ARDF Course data v Extensions na ResultList úrovni
+<!-- =======================
+         ARDF: RaceCourseData – alias mapping pro celý závod
     ======================== -->
     <Extensions>
-        <!-- Výčet vyhledávaných kontrol v kategoriích (ARDF rozšíření) -->
         <ardf:RaceCourseData>
-            <!-- M20 -->
-            <ardf:Course>
-                <ardf:CourseFamily>M20</ardf:CourseFamily>
 
-                <!-- Normální kontroly -->
-                <ardf:CourseControl type="Control">
-                    <ardf:ControlCode>21</ardf:ControlCode>
-                    <!-- Alias kontroly - volitelný -->
-                    <ardf:Alias>1</ardf:Alias>
-                </ardf:CourseControl>
-                <ardf:CourseControl type="Control">
-                    <ardf:ControlCode>22</ardf:ControlCode>
-                    <ardf:Alias>2</ardf:Alias>
-                </ardf:CourseControl>
-                <ardf:CourseControl type="Control">
-                    <ardf:ControlCode>23</ardf:ControlCode>
-                    <ardf:Alias>3</ardf:Alias>
-                </ardf:CourseControl>
-                <ardf:CourseControl type="Control">
-                    <ardf:ControlCode>24</ardf:ControlCode>
-                    <ardf:Alias>4</ardf:Alias>
-                </ardf:CourseControl>
-                <ardf:CourseControl type="Control">
-                    <ardf:ControlCode>25</ardf:ControlCode>
-                    <ardf:Alias>5</ardf:Alias>
-                </ardf:CourseControl>
+            <!-- Globální mapování ControlCode -> Alias (+ optional type) -->
 
-                <!-- Maják -->
-                <ardf:CourseControl type="Beacon">
-                    <ardf:ControlCode>99</ardf:ControlCode>
-                    <ardf:Alias>M</ardf:Alias>
-                </ardf:CourseControl>
-            </ardf:Course>
-
-            <!-- D20 -->
-            <ardf:Course>
-                <ardf:CourseFamily>D20</ardf:CourseFamily>
-                
-                <ardf:CourseControl type="Control">
-                    <ardf:ControlCode>22</ardf:ControlCode>
-                    <ardf:Alias>2</ardf:Alias>
-                </ardf:CourseControl>
-
-                <!-- Divácká kontrola -->
-                <ardf:CourseControl type="Separator">
-                    <ardf:ControlCode>23</ardf:ControlCode>
-                    <ardf:Alias>S</ardf:Alias>
-                </ardf:CourseControl>
-
-                <ardf:CourseControl type="Control">
-                    <ardf:ControlCode>24</ardf:ControlCode>
-                    <ardf:Alias>4</ardf:Alias>
-                </ardf:CourseControl>
-                <ardf:CourseControl type="Control">
-                    <ardf:ControlCode>25</ardf:ControlCode>
-                    <ardf:Alias>5</ardf:Alias>
-                </ardf:CourseControl>
-
-                <!-- Maják -->
-                <ardf:CourseControl type="Beacon">
-                    <ardf:ControlCode>99</ardf:ControlCode>
-                    <ardf:Alias>M</ardf:Alias>
-                </ardf:CourseControl>
-            </ardf:Course>
+            <!-- běžné kontroly 1–5 -->
+            <ardf:CourseControl type="Control">
+                <ardf:ControlCode>21</ardf:ControlCode>
+                <ardf:Alias>1</ardf:Alias>
+            </ardf:CourseControl>
+            <ardf:CourseControl type="Control">
+                <ardf:ControlCode>22</ardf:ControlCode>
+                <ardf:Alias>2</ardf:Alias>
+            </ardf:CourseControl>
+            <ardf:CourseControl type="Separator">
+                <ardf:ControlCode>23</ardf:ControlCode>
+                <ardf:Alias>S</ardf:Alias>
+            </ardf:CourseControl>
+            <ardf:CourseControl type="Control">
+                <ardf:ControlCode>24</ardf:ControlCode>
+                <ardf:Alias>4</ardf:Alias>
+            </ardf:CourseControl>
+            <ardf:CourseControl type="Control">
+                <ardf:ControlCode>25</ardf:ControlCode>
+                <ardf:Alias>5</ardf:Alias>
+            </ardf:CourseControl>
+            <ardf:CourseControl type="Beacon">
+                <ardf:ControlCode>99</ardf:ControlCode>
+                <ardf:Alias>M</ardf:Alias>
+            </ardf:CourseControl>
         </ardf:RaceCourseData>
     </Extensions>
 </ResultList>
