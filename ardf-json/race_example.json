@@ -107,35 +107,30 @@
           {
             "code": "31",
             "split_time": "05:12",
-            "alias": "1",
             "control_type": "CONTROL",
             "punch_status": "OK"
           },
           {
             "code": "32",
             "split_time": "05:22",
-            "alias": "2",
             "control_type": "CONTROL",
             "punch_status": "OK"
           },
           {
             "code": "43",
             "split_time": "10:40",
-            "alias": "R3",
             "control_type": "CONTROL",
             "punch_status": "OK"
           },
           {
             "code": "99",
             "split_time": "05:43",
-            "alias": "M",
             "control_type": "BEACON",
             "punch_status": "OK"
           },
           {
             "code": "0",
             "split_time": "08:45",
-            "alias": "F",
             "control_type": "FINISH",
             "punch_status": "OK"
           }
@@ -160,35 +155,30 @@
           {
             "code": "31",
             "split_time": "05:12",
-            "alias": "1",
             "control_type": "CONTROL",
             "punch_status": "OK"
           },
           {
             "code": "32",
             "split_time": "05:22",
-            "alias": "2",
             "control_type": "CONTROL",
             "punch_status": "AP"
           },
           {
             "code": "55",
             "split_time": "10:40",
-            "alias": "S",
             "control_type": "SEPARATOR",
             "punch_status": "OK"
           },
           {
             "code": "99",
             "split_time": "105:43",
-            "alias": "M",
             "control_type": "BEACON",
             "punch_status": "OK"
           },
           {
             "code": "0",
             "split_time": "08:45",
-            "alias": "F",
             "control_type": "FINISH",
             "punch_status": "OK"
           }
