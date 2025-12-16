@@ -212,7 +212,7 @@
                 "alias_name": {
                   "type": "string",
                   "required": [],
-                  "description": "Name of the control point with alias- e.g. F4"
+                  "description": "Name of the control point with alias- e.g. F4, M, F, 2..."
                 }
               }
             }
@@ -271,6 +271,10 @@
                   "minimum": 0,
                   "description": "Competitor's start number"
                 },
+                "country": {
+                  "type": "string",
+                  "description": "Competitor's country - ISO 3166-1 alpha-3 code"
+                },
                 "start_preference": {
                   "type": "integer",
                   "minimum": 0,
@@ -279,9 +283,9 @@
                 },
                 "competitor_start_time": {
                   "type": "string",
-                  "format": "time",
+                  "pattern": "^-?\\d{1,3}:[0-5]\\d$",
                   "minimum": 0,
-                  "description": "Competitor's relative start time from start 0, in mm:ss"
+                  "description": "Competitor's relative start time from start 0, in mmm:ss"
                 },
                 "result": {
                   "type": "object",
@@ -301,8 +305,8 @@
                     },
                     "run_time": {
                       "type": "string",
-                      "pattern": "^(?:[0-5]\\d):[0-5]\\d$",
-                      "description": "Run time of the competitor, in the form of mm:ss"
+                      "pattern": "^\\d{1,3}:[0-5]\\d$",
+                      "description": "Run time of the competitor, in the form of mmm:ss"
                     },
                     "result_status": {
                       "type": "string",
@@ -356,9 +360,9 @@
                           },
                           "split_time": {
                             "type": "string",
-                            "pattern": "^(?:[0-5]\\d):[0-5]\\d$",
+                            "pattern": "^\\d{1,3}:[0-5]\\d$",
                             "required": [],
-                            "description": "Split from the last control, format mm:ss"
+                            "description": "Split from the last control, format mmm:ss"
                           },
                           "punch_status": {
                             "type": "string",

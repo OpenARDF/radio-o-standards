@@ -1,0 +1,128 @@
+{
+  "categories": [
+    {
+      "category_name": "M20",
+      "category_time_limit": 120,
+      "category_band": "M80",
+      "category_gender": true,
+      "category_max_age": 19,
+      "category_control_points": [
+        { "si_code": 31, "control_type": "CONTROL" },
+        { "si_code": 55, "control_type": "SEPARATOR" },
+        { "si_code": 43, "control_type": "CONTROL" },
+        { "si_code": 99, "control_type": "BEACON" }
+      ]
+    }
+  ],
+
+  "aliases": [
+    { "alias_si_code": 31, "alias_name": "1" },
+    { "alias_si_code": 32, "alias_name": "2" },
+    { "alias_si_code": 55, "alias_name": "S" },
+    { "alias_si_code": 43, "alias_name": "R3" },
+    { "alias_si_code": 99, "alias_name": "M" },
+    { "alias_si_code": 0, "alias_name": "F" }
+
+  ],
+
+  "competitors": [
+    {
+      "competitor_category": "M20",
+      "competitor_club": "SK RADIOSPORT z.s.",
+      "start_number": 101,
+      "competitor_gender": true,
+      "last_name": "Novák",
+      "first_name": "Petr",
+      "birth_year": 1970,
+      "si_number": 45678,
+      "country": "CZE",
+      "competitor_index": "GBM8502",
+      "competitor_start_time": "00:00",
+      "result": {
+        "place": 1,
+        "run_time": "35:42",
+        "result_status": "OK",
+        "punch_count": 5,
+        "punches": [
+          {
+            "code": 31,
+            "split_time": "05:12",
+            "control_type": "CONTROL",
+            "punch_status": "OK"
+          },
+          {
+            "code": 32,
+            "split_time": "05:22",
+            "control_type": "CONTROL",
+            "punch_status": "OK"
+          },
+          {
+            "code": 43,
+            "split_time": "10:40",
+            "control_type": "CONTROL",
+            "punch_status": "OK"
+          },
+          {
+            "code": 99,
+            "split_time": "05:43",
+            "control_type": "BEACON",
+            "punch_status": "OK"
+          },
+          {
+            "code": 0,
+            "split_time": "08:45",
+            "control_type": "FINISH",
+            "punch_status": "OK"
+          }
+        ]
+      }
+    },
+    {
+      "competitor_category": "M20",
+      "competitor_gender": true,
+      "last_name": "Dvořák",
+      "first_name": "Jan",
+      "si_number": 98765,
+      "birth_year": 1990,
+      "competitor_start_time": "05:00",
+      "result": {
+        "place": 0,
+        "run_time": "135:42",
+        "result_status": "OVT",
+        "punch_count": 4,
+        "punches": [
+          {
+            "code": 31,
+            "split_time": "05:12",
+            "control_type": "CONTROL",
+            "punch_status": "OK"
+          },
+          {
+            "code": 32,
+            "split_time": "05:22",
+            "control_type": "CONTROL",
+            "punch_status": "AP"
+          },
+          {
+            "code": 55,
+            "split_time": "10:40",
+            "control_type": "SEPARATOR",
+            "punch_status": "OK"
+          },
+          {
+            "code": 99,
+            "split_time": "105:43",
+            "control_type": "BEACON",
+            "punch_status": "OK"
+          },
+          {
+            "code": 0,
+            "split_time": "08:45",
+            "control_type": "FINISH",
+            "punch_status": "OK"
+          }
+        ]
+      }
+    }
+  ]
+}

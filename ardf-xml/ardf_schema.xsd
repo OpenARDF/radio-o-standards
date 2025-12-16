@@ -7,142 +7,145 @@
   elementFormDefault="qualified"
   attributeFormDefault="unqualified">
 
-  <!-- Adjust schemaLocation to your IOF 3.0 XSD path -->
-  <xs:import namespace="http://www.orienteering.org/datastandard/3.0"
-           schemaLocation="https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd"/>
+  <!-- IOF 3.0 official schema -->
+  <xs:import
+      namespace="http://www.orienteering.org/datastandard/3.0"
+      schemaLocation="https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd"/>
 
-  <!-- ===== ARDF: constrained result statuses ===== -->
-  <xs:simpleType name="ResultStatus">
+  <!-- ==========================
+       ARDF: CourseControls per class
+       (list of ControlCode in Class/Extensions)
+  =========================== -->
+
+  <xs:complexType name="CourseControlsType">
     <xs:annotation>
-      <xs:documentation>Allowed result statuses (ARDF restriction over IOF).</xs:documentation>
+      <xs:documentation>
+        List of controls (by ControlCode) for a given ARDF class/category.
+
+        Recommended location:
+          - inside iof:Class/iof:Extensions as ardf:CourseControls.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ControlCode" type="xs:string" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="CourseControls" type="ardf:CourseControlsType"/>
+
+  <!-- ==========================
+       ARDF: RaceCourseData (alias mapping)
+       in ResultList/Extensions
+  =========================== -->
+
+  <xs:simpleType name="CourseControlTypeKind">
+    <xs:annotation>
+      <xs:documentation>
+        Type of course control:
+          - Control   : normal control
+          - Separator : spectator control
+          - Beacon    : beacon / final transmitter
+      </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="OK"/>
-      <xs:enumeration value="MissingPunch"/>
-      <xs:enumeration value="Disqualified"/>
-      <xs:enumeration value="DidNotFinish"/>
-      <xs:enumeration value="OverTime"/>
-      <xs:enumeration value="NotCompeting"/>
-      <xs:enumeration value="DidNotStart"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <!-- ===== ARDF: flags for control/split ===== -->
-  <xs:simpleType name="ControlMarkStatus">
-    <xs:annotation>
-      <xs:documentation>Mark a special control inside a split: Separator (spectator) or Beacon.</xs:documentation>
-    </xs:annotation>
-    <xs:restriction base="xs:string">
+      <xs:enumeration value="Control"/>
       <xs:enumeration value="Separator"/>
       <xs:enumeration value="Beacon"/>
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="SplitStatus">
+  <xs:complexType name="CourseControlType">
     <xs:annotation>
-      <xs:documentation>Per-split flag: Additional (extra punch) or Missing (not taken).</xs:documentation>
+      <xs:documentation>
+        Mapping between timing ControlCode and ARDF alias.
+
+        ardf:ControlCode:
+          - control code used in timing / punches.
+
+        ardf:Alias:
+          - human-readable / ARDF alias (e.g. "1", "M", "S", "R1").
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ControlCode" type="xs:string"/>
+      <xs:element name="Alias" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="ardf:CourseControlTypeKind" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="RaceCourseDataType">
+    <xs:annotation>
+      <xs:documentation>
+        Global alias mapping for the race.
+
+        Recommended location:
+          - inside iof:ResultList/iof:Extensions as ardf:RaceCourseData.
+
+        Each CourseControl gives ControlCode + Alias (+ optional type).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CourseControl" type="ardf:CourseControlType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Global element used inside ResultList/Extensions -->
+  <xs:element name="RaceCourseData" type="ardf:RaceCourseDataType"/>
+
+  <!-- ==========================
+       ARDF: ValidPunches for Result/Extensions
+  =========================== -->
+
+  <xs:element name="ValidPunches" type="xs:integer">
+    <xs:annotation>
+      <xs:documentation>
+        Number of correctly found controls for a given ARDF result,
+        including spectator controls (Separator) and beacon (Beacon).
+
+        Recommended location:
+          - inside iof:Result/iof:Extensions as ardf:ValidPunches.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <!-- ==========================
+       ARDF: MaxAge & Sex for Class/Extensions
+  =========================== -->
+
+  <xs:simpleType name="SexType">
+    <xs:annotation>
+      <xs:documentation>
+        Sex / category type:
+          - M : male
+          - F : female
+      </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Additional"/>
-      <xs:enumeration value="Missing"/>
+      <xs:enumeration value="M"/>
+      <xs:enumeration value="F"/>
     </xs:restriction>
   </xs:simpleType>
 
-  <!-- ===== ARDF: SplitTime (adds ControlCode/@status and SplitTime/@status) ===== -->
-  <xs:complexType name="SplitTime">
+  <xs:element name="MaxAge" type="xs:integer">
     <xs:annotation>
       <xs:documentation>
-        Split time to a control. ControlCode may carry @status={"Separator","Beacon"}.
-        The split itself may carry @status={"Additional","Missing"}.
-        Time is optional (e.g., omit for Missing).
+        Maximum age for the class (e.g. 39 for M20, 99 for D60).
+
+        Recommended location:
+          - inside iof:Class/iof:Extensions as ardf:MaxAge.
       </xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="ControlCode">
-        <xs:complexType>
-          <xs:simpleContent>
-            <xs:extension base="xs:string">
-              <xs:attribute name="status" type="ardf:ControlMarkStatus" use="optional"/>
-            </xs:extension>
-          </xs:simpleContent>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="Time" type="xs:integer" minOccurs="0"/>
-    </xs:sequence>
-    <xs:attribute name="status" type="ardf:SplitStatus" use="optional"/>
-  </xs:complexType>
+  </xs:element>
 
-  <!-- ===== ARDF: Result (IOF-like; uses ARDF Status/SplitTime) ===== -->
-  <xs:complexType name="Result">
+  <xs:element name="Sex" type="ardf:SexType">
     <xs:annotation>
       <xs:documentation>
-        Same structure as IOF Result, but Status is restricted to ARDF set and SplitTime uses ARDF extensions.
+        Sex of the class (M/F).
+
+        Recommended location:
+          - inside iof:Class/iof:Extensions as ardf:Sex.
       </xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:element name="StartTime" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="FinishTime" type="xs:dateTime" minOccurs="0"/>
-      <xs:element name="Time" type="xs:integer" minOccurs="0"/>
-      <xs:element name="Position" type="xs:integer" minOccurs="0"/>
-      <xs:element name="Status" type="ardf:ResultStatus"/>
-      <xs:element name="SplitTime" type="ardf:SplitTime" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <!-- ===== ARDF: PersonResult / ClassResult wrappers binding ARDF Result ===== -->
-  <xs:complexType name="PersonResult">
-    <xs:annotation>
-      <xs:documentation>IOF-like PersonResult that embeds ARDF Result.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="Person" type="iof:Person"/>
-      <xs:element name="Result" type="ardf:Result"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="ClassResult">
-    <xs:annotation>
-      <xs:documentation>Result set for a single class/category.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="Class" type="iof:Class"/>
-      <xs:element name="PersonResult" type="ardf:PersonResult" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="ResultListType">
-    <xs:annotation>
-      <xs:documentation>
-        Container for results across classes. Course listings remain as in IOF; control statuses are only in SplitTime.
-      </xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="Event" type="iof:Event"/>
-      <xs:element name="ClassResult" type="ardf:ClassResult" maxOccurs="unbounded"/>
-    </xs:sequence>
-    <xs:attribute name="iofVersion" type="xs:string" use="optional"/>
-    <xs:attribute name="createTime" type="xs:string" use="optional"/>
-    <xs:attribute name="creator" type="xs:string" use="optional"/>
-  </xs:complexType>
-
-  <!-- ===== ARDF: StartList (IOF pass-through; no behavioral change) ===== -->
-  <xs:complexType name="StartListType">
-    <xs:annotation>
-      <xs:documentation>
-        Wrapper using IOF start structures (unchanged); provided to keep both roots under ARDF namespace.
-      </xs:documentation>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="Event" type="iof:Event"/>
-      <xs:element name="ClassStart" type="iof:ClassStart" maxOccurs="unbounded"/>
-    </xs:sequence>
-    <xs:attribute name="iofVersion" type="xs:string" use="optional"/>
-    <xs:attribute name="createTime" type="xs:string" use="optional"/>
-    <xs:attribute name="creator" type="xs:string" use="optional"/>
-  </xs:complexType>
-
-  <!-- ===== ARDF roots ===== -->
-  <xs:element name="ResultList" type="ardf:ResultListType"/>
-  <xs:element name="StartList" type="ardf:StartListType"/>
+  </xs:element>
 
 </xs:schema>
