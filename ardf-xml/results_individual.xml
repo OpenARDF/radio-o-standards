@@ -7,7 +7,7 @@
     createTime="2024-12-08T16:52:12Z"
     creator="CREATOR NAME"
     xsi:schemaLocation="http://www.orienteering.org/datastandard/3.0 https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd
-                        http://rob-is.cz/datastandard/ardf/1.0 https://raw.githubusercontent.com/kolskypavel/radio-o-standards/main/ardf-xml/ardf_schema.xsd">
+                        http://rob-is.cz/datastandard/ardf/1.0 https://raw.githubusercontent.com/AROB-CR/radio-o-standards/main/ardf-xml/ardf_schema.xsd">
 
     <Event>
         <Name>MČR 3,5 MHz</Name>
@@ -66,7 +66,7 @@
                      DidNotFinish, OverTime, NotCompeting, DidNotStart -->
                 <Status>OK</Status>
 
-                <!-- SplitTime – čisté IOF, status na SplitTime = Additional/Missing -->
+                <!-- SplitTime – status na SplitTime = Additional/Missing -->
                 <SplitTime>
                     <ControlCode>22</ControlCode>
                     <Time>1366</Time>
@@ -98,7 +98,7 @@
                 <!-- ARDF rozšíření pro Result – v IOF:Result/Extensions -->
                 <Extensions>
                     <!-- Počet správně nalezených kontrol včetně divácké a majáku -->
-                    <ardf:ValidPunches>6</ardf:ValidPunches>
+                    <ardf:ValidPunches>5</ardf:ValidPunches>
                 </Extensions>
             </Result>
         </PersonResult>
@@ -137,7 +137,7 @@
                 <StartTime>2024-11-02T12:16:00Z</StartTime>
                 <FinishTime>2024-11-02T12:39:56+01:00</FinishTime>
                 <Time>1436</Time>
-                <Position>1</Position>
+                <!-- Position – uvádí se jen pokud Status=OK -->
                 <Status>OverTime</Status>
 
                 <SplitTime>
@@ -152,7 +152,7 @@
                     <ControlCode>24</ControlCode>
                     <Time>701</Time>
                 </SplitTime>
-                <!-- Chybějící kontrola navíc -->
+                <!-- Chybějící kontrola -->
                 <SplitTime status="Missing">
                     <ControlCode>25</ControlCode>
                     <Time>868</Time>
@@ -172,7 +172,7 @@
                 <ControlCard>299482</ControlCard>
 
                 <Extensions>
-                    <ardf:ValidPunches>5</ardf:ValidPunches>
+                    <ardf:ValidPunches>4</ardf:ValidPunches>
                 </Extensions>
             </Result>
         </PersonResult>
