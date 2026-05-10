@@ -223,6 +223,10 @@
               "type": "object",
               "description": "One competitor in the race",
               "properties": {
+                "entry_id": {
+                  "type": "integer",
+                  "description": "Entry ID from an external registration system"
+                },
                 "first_name": {
                   "type": "string",
                   "required": [],

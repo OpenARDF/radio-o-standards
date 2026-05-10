@@ -27,6 +27,7 @@
 
   "competitors": [
     {
+      "entry_id": 184291,
       "competitor_category": "M20",
       "competitor_club": "SK RADIOSPORT z.s.",
       "start_number": 101,
@@ -78,6 +79,7 @@
       }
     },
     {
+      "entry_id": 184292,
       "competitor_category": "M20",
       "competitor_gender": true,
       "last_name": "Dvořák",
