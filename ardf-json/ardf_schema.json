@@ -3,6 +3,11 @@
   "title": "ARDF JSON v1.1b",
   "description": "Data standard for storing ARDF competition data",
   "type": "object",
+  "required": [
+    "format_version",
+    "event_name",
+    "races"
+  ],
   "properties": {
     "format_version": {
       "type": "integer",
@@ -35,6 +40,12 @@
       "items": {
         "type": "object",
         "description": "One race of the event",
+        "required": [
+          "race_name",
+          "race_start",
+          "race_type",
+          "categories"
+        ],
         "properties": {
           "race_name": {
             "type": "string",
@@ -102,6 +113,10 @@
             "items": {
               "type": "object",
               "description": "One category in the race",
+              "required": [
+                "category_name",
+                "category_gender"
+              ],
               "properties": {
                 "category_name": {
                   "type": "string",
@@ -132,6 +147,10 @@
                   "items": {
                     "type": "object",
                     "description": "One control point",
+                    "required": [
+                      "si_code",
+                      "control_type"
+                    ],
                     "properties": {
                       "si_code": {
                         "type": "integer",
@@ -192,6 +211,10 @@
             "items": {
               "type": "object",
               "description": "One alias",
+              "required": [
+                "alias_si_code",
+                "alias_name"
+              ],
               "properties": {
                 "alias_si_code": {
                   "type": "integer",
@@ -211,6 +234,12 @@
             "items": {
               "type": "object",
               "description": "One competitor in the race",
+              "required": [
+                "first_name",
+                "last_name",
+                "competitor_category",
+                "competitor_gender"
+              ],
               "properties": {
                 "entry_id": {
                   "type": "integer",
@@ -278,6 +307,9 @@
                 "result": {
                   "type": "object",
                   "description": "Competitor's result",
+                  "required": [
+                    "result_status"
+                  ],
                   "properties": {
                     "check_time": {
                       "type": "string",
@@ -333,6 +365,10 @@
                       "items": {
                         "type": "object",
                         "description": "One punch of a control point",
+                        "required": [
+                          "split_time",
+                          "punch_status"
+                        ],
                         "properties": {
                           "code": {
                             "type": "string",
@@ -408,6 +444,9 @@
                   "items": {
                     "type": "object",
                     "description": "One punch of a control point",
+                    "required": [
+                      "split_time"
+                    ],
                     "properties": {
                       "code": {
                         "type": "string",
