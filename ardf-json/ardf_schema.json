@@ -339,11 +339,12 @@
                         "DNS",
                         "DNF",
                         "NR",
+                        "DSQ",
                         "OVT",
                         "UNF",
                         "ERR"
                       ],
-                      "description": "Status of the result: OK - valid, MP - misspunched, DNS - did not start, DNF - did not finish, NR - no ranking, OVT - overtime, UNF - unofficial, ERR - error"
+                      "description": "Status of the result: OK - valid, MP - misspunched, DNS - did not start, DNF - did not finish, NR - no ranking, DSQ - disqualified, OVT - overtime, OVT - overtime, UNF - unofficial, ERR - error"
                     },
                     "place": {
                       "type": "integer",
