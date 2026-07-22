@@ -134,7 +134,7 @@
                 "category_length": {
                   "type": "number",
                   "minimum": 0,
-                  "description": "Length of the course in kilometers"
+                  "description": "Length of the course in meters"
                 },
                 "category_climb": {
                   "type": "number",
