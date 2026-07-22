@@ -1,16 +1,20 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "ARDF JSON v1.1b",
   "description": "Data standard for storing ARDF competition data",
   "type": "object",
+  "required": [
+    "format_version",
+    "event_name",
+    "races"
+  ],
   "properties": {
     "format_version": {
       "type": "integer",
-      "required": [],
       "description": "Main version of the ARDF JSON standard - used for compatibility"
     },
     "event_name": {
       "type": "string",
-      "required": [],
       "description": "Name of the event"
     },
     "event_id": {
@@ -33,15 +37,18 @@
     },
     "races": {
       "type": "array",
-      "required": [],
       "items": {
         "type": "object",
-        "id": " ",
         "description": "One race of the event",
+        "required": [
+          "race_name",
+          "race_start",
+          "race_type",
+          "categories"
+        ],
         "properties": {
           "race_name": {
             "type": "string",
-            "required": [],
             "description": "Name of the race"
           },
           "race_location": {
@@ -55,7 +62,6 @@
           "race_start": {
             "type": "string",
             "format": "date-time",
-            "required": [],
             "description": "Time of 00"
           },
           "race_type": {
@@ -69,7 +75,6 @@
               "RELAY",
               "ORIENTEERING"
             ],
-            "required": [],
             "description": "Type of the race"
           },
           "race_band": {
@@ -105,19 +110,20 @@
           },
           "categories": {
             "type": "array",
-            "required": [],
             "items": {
               "type": "object",
               "description": "One category in the race",
+              "required": [
+                "category_name",
+                "category_gender"
+              ],
               "properties": {
                 "category_name": {
                   "type": "string",
-                  "required": [],
                   "description": "Name of the category"
                 },
                 "category_gender": {
                   "type": "boolean",
-                  "required": [],
                   "description": "true - man, false - woman"
                 },
                 "category_max_age": {
@@ -141,21 +147,24 @@
                   "items": {
                     "type": "object",
                     "description": "One control point",
+                    "required": [
+                      "si_code",
+                      "control_type"
+                    ],
                     "properties": {
                       "si_code": {
                         "type": "integer",
                         "minimum": 0,
                         "maximum": 255,
-                        "required": [],
                         "description": "SI code of the control point"
                       },
                       "control_type": {
+                        "type": "string",
                         "enum": [
                           "CONTROL",
                           "BEACON",
                           "SEPARATOR"
                         ],
-                        "required": [],
                         "description": "Type of the control - regular, beacon, separator"
                       }
                     }
@@ -173,6 +182,7 @@
                     "SPRINT",
                     "FOXORING",
                     "LONG",
+                    "SHORT",
                     "RELAY",
                     "ORIENTEERING"
                   ],
@@ -201,17 +211,19 @@
             "items": {
               "type": "object",
               "description": "One alias",
+              "required": [
+                "alias_si_code",
+                "alias_name"
+              ],
               "properties": {
                 "alias_si_code": {
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 255,
-                  "required": [],
                   "description": "SI code of the control point with alias"
                 },
                 "alias_name": {
                   "type": "string",
-                  "required": [],
                   "description": "Name of the control point with alias- e.g. F4, M, F, 2..."
                 }
               }
@@ -222,6 +234,12 @@
             "items": {
               "type": "object",
               "description": "One competitor in the race",
+              "required": [
+                "first_name",
+                "last_name",
+                "competitor_category",
+                "competitor_gender"
+              ],
               "properties": {
                 "entry_id": {
                   "type": "integer",
@@ -229,12 +247,10 @@
                 },
                 "first_name": {
                   "type": "string",
-                  "required": [],
                   "description": "Competitor's first name"
                 },
                 "last_name": {
                   "type": "string",
-                  "required": [],
                   "description": "Competitor's last name"
                 },
                 "competitor_club": {
@@ -243,7 +259,6 @@
                 },
                 "competitor_category": {
                   "type": "string",
-                  "required": [],
                   "description": "Competitor's category in the race"
                 },
                 "competitor_index": {
@@ -252,7 +267,6 @@
                 },
                 "competitor_gender": {
                   "type": "boolean",
-                  "required": [],
                   "description": "true - man, false - woman"
                 },
                 "birth_year": {
@@ -267,7 +281,7 @@
                 },
                 "si_rent": {
                   "type": "boolean",
-                  "default": "false",
+                  "default": false,
                   "description": "Mark if competitor's SI was rented or not"
                 },
                 "start_number": {
@@ -288,23 +302,28 @@
                 "competitor_start_time": {
                   "type": "string",
                   "pattern": "^-?\\d{1,3}:[0-5]\\d$",
-                  "minimum": 0,
                   "description": "Competitor's relative start time from start 0, in mmm:ss"
                 },
                 "result": {
                   "type": "object",
                   "description": "Competitor's result",
+                  "required": [
+                    "result_status"
+                  ],
                   "properties": {
                     "check_time": {
-                      "type": "date-time",
+                      "type": "string",
+                      "format": "date-time",
                       "description": "SI check time"
                     },
                     "start_time": {
-                      "type": "date-time",
+                      "type": "string",
+                      "format": "date-time",
                       "description": "SI start time"
                     },
                     "finish_time": {
-                      "type": "date-time",
+                      "type": "string",
+                      "format": "date-time",
                       "description": "SI finish time "
                     },
                     "run_time": {
@@ -325,8 +344,7 @@
                         "UNF",
                         "ERR"
                       ],
-                      "required": [],
-                      "description": "Status of the result: OK - valid, MP - misspunched, DNS - did not start, DNF - did not finish, NR - no ranking, DSQ - disqualified, OVT - overtime, UNF - unofficial, ERR - error"
+                      "description": "Status of the result: OK - valid, MP - misspunched, DNS - did not start, DNF - did not finish, NR - no ranking, DSQ - disqualified, OVT - overtime, OVT - overtime, UNF - unofficial, ERR - error"
                     },
                     "place": {
                       "type": "integer",
@@ -348,6 +366,10 @@
                       "items": {
                         "type": "object",
                         "description": "One punch of a control point",
+                        "required": [
+                          "split_time",
+                          "punch_status"
+                        ],
                         "properties": {
                           "code": {
                             "type": "string",
@@ -366,7 +388,6 @@
                           "split_time": {
                             "type": "string",
                             "pattern": "^\\d{1,3}:[0-5]\\d$",
-                            "required": [],
                             "description": "Split from the last control, format mmm:ss"
                           },
                           "punch_status": {
@@ -377,7 +398,6 @@
                               "DP",
                               "AP"
                             ],
-                            "required": [],
                             "description": "Status of the punch: OK - valid, MP - misspunch, DP - duplicate punch, AP - additional punch (unknown SI code)"
                           }
                         }
@@ -400,21 +420,24 @@
                   "description": "Result's SI number"
                 },
                 "check_time": {
-                  "type": "date-time",
+                  "type": "string",
+                  "format": "date-time",
                   "description": "SI check time"
                 },
                 "start_time": {
-                  "type": "date-time",
+                  "type": "string",
+                  "format": "date-time",
                   "description": "SI start time"
                 },
                 "finish_time": {
-                  "type": "date-time",
+                  "type": "string",
+                  "format": "date-time",
                   "description": "SI finish time"
                 },
                 "run_time": {
                   "type": "string",
-                  "format": "time",
-                  "description": "Run time of the competitor, in the form of mm:ss"
+                  "pattern": "^\\d{1,3}:[0-5]\\d$",
+                  "description": "Run time of the competitor, in the form of mmm:ss"
                 },
                 "punches": {
                   "type": "array",
@@ -422,6 +445,9 @@
                   "items": {
                     "type": "object",
                     "description": "One punch of a control point",
+                    "required": [
+                      "split_time"
+                    ],
                     "properties": {
                       "code": {
                         "type": "string",
@@ -443,9 +469,8 @@
                       },
                       "split_time": {
                         "type": "string",
-                        "pattern": "^(?:[0-5]\\d):[0-5]\\d$",
-                        "required": [],
-                        "description": "Split from the last control, format mm:ss"
+                        "pattern": "^\\d{1,3}:[0-5]\\d$",
+                        "description": "Split from the last control, format mmm:ss"
                       }
                     }
                   }

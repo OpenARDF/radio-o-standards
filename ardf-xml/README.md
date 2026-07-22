@@ -13,24 +13,34 @@ This repository provides a minimal extension for ARDF use cases.
 - **Schema (XSD)**:  
   `https://raw.githubusercontent.com/AROB-CR/radio-o-standards/main/ardf-xml/ardf_schema.xsd`
 
-- **Namespace (targetNamespace / default xmlns in instances)**:  
+- **ARDF extension namespace (targetNamespace)**:
   `http://rob-is.cz/datastandard/ardf/1.0`
 
-> The IOF 3.0 schema is imported; you don’t need to modify the IOF namespace or files.
+> XML instances keep the IOF 3.0 namespace as the document default namespace and use
+> the ARDF namespace as a prefixed extension namespace. The IOF 3.0 schema is imported;
+> you don’t need to modify the IOF namespace or files.
 
 ## How to reference the schema (instance XML) in each XML
 
 **For example in results**
 ```xml
 <ResultList
-  xmlns="http://rob-is.cz/datastandard/ardf/1.0"
-  xmlns:iof="http://www.orienteering.org/datastandard/3.0"
+  xmlns="http://www.orienteering.org/datastandard/3.0"
+  xmlns:ardf="http://rob-is.cz/datastandard/ardf/1.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   iofVersion="3.0"
   createTime="2024-12-08T16:52:12Z" 
   creator="CREATOR NAME"
   xsi:schemaLocation="
-    http://rob-is.cz/datastandard/ardf/1.0 https://raw.githubusercontent.com/AROB-CR/radio-o-standards/main/ardf-xml/ardf_schema.xsd
-    http://www.orienteering.org/datastandard/3.0 https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd">
+    http://www.orienteering.org/datastandard/3.0 https://raw.githubusercontent.com/international-orienteering-federation/datastandard-v3/master/IOF.xsd
+    http://rob-is.cz/datastandard/ardf/1.0 https://raw.githubusercontent.com/AROB-CR/radio-o-standards/main/ardf-xml/ardf_schema.xsd">
+  <Extensions>
+    <ardf:RaceCourseData>
+      <ardf:CourseControl type="Beacon">
+        <ardf:ControlCode>99</ardf:ControlCode>
+        <ardf:Alias>M</ardf:Alias>
+      </ardf:CourseControl>
+    </ardf:RaceCourseData>
+  </Extensions>
 </ResultList>
 ```
